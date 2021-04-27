@@ -6,32 +6,29 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
-@Table(name = "users")
-public class User {
-
+@Table(name = "carts")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
-    private String username;
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems;
 
-    @Column(name = "password")
-    private String password;
+    @OneToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "total_items")
+    private Integer totalItems;
 
-    @ManyToMany
-    @JoinTable(name = "users_roles",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    @Column(name = "total_price")
+    private Integer totalPrice;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -40,4 +37,5 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 }

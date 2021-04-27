@@ -61,3 +61,23 @@ create table order_items (
     created_at              timestamp default current_timestamp,
     updated_at              timestamp default current_timestamp
 );
+
+create table carts (
+    id                      bigserial primary key,
+    owner_id                bigint references users (id),
+    total_items             int,
+    total_price             int,
+    created_at              timestamp default current_timestamp,
+    updated_at              timestamp default current_timestamp
+);
+
+create table cart_items (
+    id                      bigserial primary key,
+    cart_id                 bigint references carts (id),
+    product_id              bigint references products (id),
+    quantity                int,
+    price_per_product       int,
+    price                   int,
+    created_at              timestamp default current_timestamp,
+    updated_at              timestamp default current_timestamp
+);
