@@ -13,7 +13,7 @@ public class CartController {
     private CartService cartService;
 
     @GetMapping("/{id}")
-    public CartDto findById(@PathVariable Long id) {  //todo exceptions
+    public CartDto findById(@PathVariable Long id) {
         return cartService.findCartDtoById(id).orElseThrow(() -> new RuntimeException("Not found!!!"));
     }
 
