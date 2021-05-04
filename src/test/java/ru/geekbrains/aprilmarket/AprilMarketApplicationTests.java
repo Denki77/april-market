@@ -6,10 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class AprilMarketApplicationTests {
 
-    @Test
-    void contextLoads() {
-
-    }
-
+	@Test
+	void contextLoads() {
+	}
 
 }
